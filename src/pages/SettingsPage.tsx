@@ -16,8 +16,6 @@ import { checkDockingBackendHealth } from '../services/dockingBackendService';
 
 export const SettingsPage: React.FC = () => {
   const {
-    openRouterApiKey,
-    setOpenRouterApiKey,
     openRouterModel,
     setOpenRouterModel,
     dockingBackendUrl,
@@ -94,17 +92,9 @@ export const SettingsPage: React.FC = () => {
         </p>
 
         <div className="space-y-3 font-mono text-xs">
-          <div className="space-y-1">
-            <label className="text-slate-400 block">OpenRouter API Key (sk-or-v1-...):</label>
-            <input
-              type="password"
-              value={openRouterApiKey}
-              onChange={(e) => setOpenRouterApiKey(e.target.value)}
-              placeholder="sk-or-v1-xxxxxxxxxxxxxxxxxxxx"
-              className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-purple-500"
-            />
+          <div className="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-200">
+            The OpenRouter key is configured on the Vercel server and is never sent to this browser.
           </div>
-
           <div className="space-y-1">
             <label className="text-slate-400 block">Default LLM Model:</label>
             <input

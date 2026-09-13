@@ -4,23 +4,15 @@
  * All AI calls flow through this file.
  * Works with any OpenAI-compatible model served by OpenRouter.
  *
- * Get your free API key → https://openrouter.ai/keys
- * Set it in .env:  REACT_APP_OPENROUTER_API_KEY=sk-or-v1-...
- *   or via the Settings page (stored in localStorage).
+ * AI requests are proxied through the same-origin Vercel /api/chat route.
  */
 
-const BASE_URL = "https://openrouter.ai/api/v1/chat/completions";
-
-/** Resolve key: runtime arg → env var */
-function resolveKey(runtimeKey = "") {
-  return runtimeKey || process.env.REACT_APP_OPENROUTER_API_KEY || "";
-}
+const BASE_URL = "/api/chat";
 
 /** Active model from env or safe default */
 function resolveModel() {
   return (
-    process.env.REACT_APP_OPENROUTER_MODEL ||
-    "mistralai/mistral-7b-instruct"
+    "meta-llama/llama-3.3-70b-instruct:free"
   );
 }
 
@@ -32,17 +24,11 @@ function resolveModel() {
  * @param {string} [apiKey]   Optional runtime key (overrides env)
  * @returns {Promise<string>} Raw text content from the model
  */
-export async function callOpenRouter(system, user, apiKey = "") {
-  const key = resolveKey(apiKey);
-  if (!key) throw new Error("NO_KEY");
-
+export async function callOpenRouter(system, user, _apiKey = "") {
   const res = await fetch(BASE_URL, {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${key}`,
       "Content-Type": "application/json",
-      "HTTP-Referer": process.env.REACT_APP_SITE_URL  || "http://localhost:3000",
-      "X-Title":      process.env.REACT_APP_SITE_NAME || "HealSmart",
     },
     body: JSON.stringify({
       model:      resolveModel(),
@@ -60,8 +46,12 @@ export async function callOpenRouter(system, user, apiKey = "") {
     throw new Error(err?.error?.message || `HTTP ${res.status}`);
   }
 
-  const data = await res.json();
-  return (data.choices?.[0]?.message?.content || "").trim();
+  const data = await res.json().catch(() => null);
+  const content = data?.choices?.[0]?.message?.content;
+  if (typeof content !== "string" || !content.trim()) {
+    throw new Error("The AI service returned an empty response.");
+  }
+  return content.trim();
 }
 
 /**

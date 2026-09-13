@@ -1,4 +1,6 @@
-import { OR_KEY } from './state.js';
+import { requestAI } from './api-client.js';
+
+const fetch = requestAI;
 import { toast } from './utils.js';
 
 export function initDockingCanvas() { }
@@ -19,7 +21,7 @@ export async function runDock() {
 "admet_quick":{"mw":129.16,"logP":-1.43,"hbd":4,"hba":5,"tpsa":78.2,"lipinski_pass":true,"bbb_permeant":false},
 "interpretation":"3-4 sentence expert interpretation","repurposing_implication":"2-3 sentence repurposing implication"}`;
   try {
-    const r = await fetch('https://openrouter.ai/api/v1/chat/completions', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + OR_KEY, 'HTTP-Referer': 'https://healsmart.ai', 'X-Title': 'HealSmart' }, body: JSON.stringify({ model: 'meta-llama/llama-3.3-70b-instruct', messages: [{ role: 'system', content: sys }, { role: 'user', content: `AutoDock Vina simulation: Ligand SMILES="${sm || 'CN(C)C(=N)NC(=N)N (Metformin)'}", Target PDB="${pd || '3RJ1 AMPK'}". Return realistic docking with scientifically accurate residue names and ADMET data.` }], max_tokens: 1800, temperature: 0.1 }) });
+    const r = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ model: 'meta-llama/llama-3.3-70b-instruct', messages: [{ role: 'system', content: sys }, { role: 'user', content: `AutoDock Vina simulation: Ligand SMILES="${sm || 'CN(C)C(=N)NC(=N)N (Metformin)'}", Target PDB="${pd || '3RJ1 AMPK'}". Return realistic docking with scientifically accurate residue names and ADMET data.` }], max_tokens: 1800, temperature: 0.1 }) });
     const d = await r.json(); let t = d.choices?.[0]?.message?.content || ''; t = t.replace(/```json|```/g, '').trim(); renderDock(JSON.parse(t));
   } catch (e) { renderDock(getDemoDock(sm, pd)); }
 }

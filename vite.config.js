@@ -17,6 +17,14 @@ export default defineConfig({
   optimizeDeps: {
     entries: ['index.html'],
   },
+  build: {
+    rollupOptions: {
+      input: {
+        app: path.resolve(__dirname, 'index.html'),
+        landing: path.resolve(__dirname, 'heal.html'),
+      },
+    },
+  },
   server: {
     port: 3000,
     open: false,

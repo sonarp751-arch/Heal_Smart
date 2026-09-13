@@ -1,4 +1,6 @@
-import { OR_KEY } from './state.js';
+import { requestAI } from './api-client.js';
+
+const fetch = requestAI;
 import { toast } from './utils.js';
 
 export function dteQuick(disease) {
@@ -24,7 +26,7 @@ export async function runDTE() {
 "timeline_reduction":"X years reduced to Y months",
 "development_cost_reduction":"$XB to $YM"}`;
   try {
-    const r = await fetch('https://openrouter.ai/api/v1/chat/completions', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + OR_KEY, 'HTTP-Referer': 'https://healsmart.ai', 'X-Title': 'HealSmart' }, body: JSON.stringify({ model: 'meta-llama/llama-3.3-70b-instruct', messages: [{ role: 'system', content: sys }, { role: 'user', content: `Disease target identification for: "${disease}". Known alterations: "${genes || 'unknown'}". Context: "${notes || 'none'}". Return 5 top druggable gene targets and 4-5 repurposing candidates with realistic data.` }], max_tokens: 2500, temperature: 0.12 }) });
+    const r = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ model: 'meta-llama/llama-3.3-70b-instruct', messages: [{ role: 'system', content: sys }, { role: 'user', content: `Disease target identification for: "${disease}". Known alterations: "${genes || 'unknown'}". Context: "${notes || 'none'}". Return 5 top druggable gene targets and 4-5 repurposing candidates with realistic data.` }], max_tokens: 2500, temperature: 0.12 }) });
     const d = await r.json(); let t = d.choices?.[0]?.message?.content || ''; t = t.replace(/```json|```/g, '').trim(); renderDTE(JSON.parse(t));
   } catch (e) { renderDTE(getDemoData_DTE(disease)); }
 }

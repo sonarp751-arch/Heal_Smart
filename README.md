@@ -10,9 +10,9 @@
 # 1. Install dependencies
 npm install
 
-# 2. Set up environment variables
+# 2. Set up the server environment for local API routes
 cp .env.example .env
-# → Open .env and paste your OpenRouter key
+# → Set OPENROUTER_API_KEY in .env (never use a VITE_* key)
 
 # 3. Start the development server
 npm start
@@ -31,8 +31,8 @@ Opens at **http://localhost:3000**
 3. Open `.env` and set:
 
 ```env
-REACT_APP_OPENROUTER_API_KEY=sk-or-v1-your-key-here
-REACT_APP_OPENROUTER_MODEL=mistralai/mistral-7b-instruct
+OPENROUTER_API_KEY=your_key_here
+OPENROUTER_MODEL=meta-llama/llama-3.3-70b-instruct:free
 ```
 
 Or configure it live via the **Settings** page in the app (stored in localStorage).
@@ -104,6 +104,18 @@ explainConcept(concept, apiKey)
 ---
 
 ## 🏗️ Scaling to Production
+
+## 🚀 Vercel Deployment
+
+The Vercel production root serves `heal.html`, the HealSmart landing and portal experience. The
+research workspace is available at `/research`. Both pages are built by Vite, and all AI requests
+go through the same-origin `/api/chat` serverless function. The OpenRouter key is server-only.
+
+In Vercel, add `OPENROUTER_API_KEY` and optionally `OPENROUTER_MODEL`, `OPENROUTER_SITE_URL`, and
+`OPENROUTER_SITE_NAME` under Project Settings → Environment Variables. Never commit `.env`.
+
+For local development, use `npm install` and `npm run dev`; the static pages work at `/heal.html`,
+but `/api/chat` is provided by Vercel in production (or `vercel dev` locally).
 
 | Feature | Stack |
 |---|---|

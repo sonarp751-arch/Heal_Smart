@@ -1,4 +1,6 @@
-import { OR_KEY } from './state.js';
+import { requestAI } from './api-client.js';
+
+const fetch = requestAI;
 import { showPg } from './app.js';
 import { qCopilot } from './api-copilot.js';
 
@@ -8,7 +10,7 @@ export async function runLit() {
   area.innerHTML = '<div class="ldots"><div class="ldot"></div><div class="ldot"></div><div class="ldot"></div></div><div class="ltxt">Searching PubMed · bioRxiv · ChEMBL · ClinicalTrials.gov…</div>';
   const sys = `Return ONLY valid JSON: {"papers":[{"title":"...","authors":"A, B, et al.","journal":"...","year":2024,"doi":"10.xxxx/xxxxx","pmid":"12345678","open_access":true,"abstract":"2-3 sentence abstract","relevance_score":92,"study_type":"Research Article","key_finding":"1 sentence key finding"}]}. Return 5-6 papers.`;
   try {
-    const r = await fetch('https://openrouter.ai/api/v1/chat/completions', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + OR_KEY, 'HTTP-Referer': 'https://healsmart.ai', 'X-Title': 'HealSmart' }, body: JSON.stringify({ model: 'meta-llama/llama-3.3-70b-instruct', messages: [{ role: 'system', content: sys }, { role: 'user', content: `Literature search for: "${q}". Return 5-6 realistic pharmaceutical research papers with plausible DOIs.` }], max_tokens: 2000, temperature: 0.3 }) });
+    const r = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ model: 'meta-llama/llama-3.3-70b-instruct', messages: [{ role: 'system', content: sys }, { role: 'user', content: `Literature search for: "${q}". Return 5-6 realistic pharmaceutical research papers with plausible DOIs.` }], max_tokens: 2000, temperature: 0.3 }) });
     const d = await r.json(); let t = d.choices?.[0]?.message?.content || ''; t = t.replace(/```json|```/g, '').trim(); renderLit(JSON.parse(t), q);
   } catch (e) { renderLit(getDemoLit(q), q); }
 }

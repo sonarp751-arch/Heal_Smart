@@ -192,8 +192,8 @@ export default function ApiSettings() {
               borderRadius: 10, padding: "1.25rem", fontSize: "0.82rem",
               fontFamily: "var(--font-mono)", overflowX: "auto", lineHeight: 1.75,
             }}>
-              {`REACT_APP_OPENROUTER_API_KEY=sk-or-v1-your-key-here
-REACT_APP_OPENROUTER_MODEL=${model}
+              {`OPENROUTER_API_KEY=your_key_here
+              OPENROUTER_MODEL=${model}
 REACT_APP_SITE_URL=http://localhost:3000
 REACT_APP_SITE_NAME=HealSmart`}
             </pre>

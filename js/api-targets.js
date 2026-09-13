@@ -1,4 +1,6 @@
-import { OR_KEY } from './state.js';
+import { requestAI } from './api-client.js';
+
+const fetch = requestAI;
 
 export function setTgt(v) { const el = document.getElementById('tq'); if (el) { el.value = v; runTgt(); } }
 
@@ -14,7 +16,7 @@ export async function runTgt() {
 "pathways":["..."],"protein_interactions":["GENE1","GENE2","GENE3","GENE4","GENE5","GENE6"],
 "structural_info":{"pdb_ids":["XXXX"],"binding_sites":2,"allosteric_sites":1}}`;
   try {
-    const r = await fetch('https://openrouter.ai/api/v1/chat/completions', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + OR_KEY, 'HTTP-Referer': 'https://healsmart.ai', 'X-Title': 'HealSmart' }, body: JSON.stringify({ model: 'meta-llama/llama-3.3-70b-instruct', messages: [{ role: 'system', content: sys }, { role: 'user', content: `Gene target analysis for: "${q}". Return realistic pharma-grade data.` }], max_tokens: 1800, temperature: 0.15 }) });
+    const r = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ model: 'meta-llama/llama-3.3-70b-instruct', messages: [{ role: 'system', content: sys }, { role: 'user', content: `Gene target analysis for: "${q}". Return realistic pharma-grade data.` }], max_tokens: 1800, temperature: 0.15 }) });
     const d = await r.json(); let t = d.choices?.[0]?.message?.content || ''; t = t.replace(/```json|```/g, '').trim(); renderTgt(JSON.parse(t));
   } catch (e) { renderTgt(getDemoTgt(q)); }
 }

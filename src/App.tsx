@@ -75,7 +75,7 @@ export function App() {
   return (
     <SettingsProvider>
       <ResearchProjectProvider>
-        <Router>
+        <Router basename="/research">
           <AppLayout />
         </Router>
       </ResearchProjectProvider>

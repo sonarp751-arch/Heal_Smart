@@ -1,4 +1,3 @@
-export const OR_KEY = '';
 export let currentPortal = 'pharma'; // 'pharma' | 'patient'
 export let currentPage = '';
 export const chatHistory = [];

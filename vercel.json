@@ -1,0 +1,7 @@
+{
+  "rewrites": [
+    { "source": "/research", "destination": "/index.html" },
+    { "source": "/research/(.*)", "destination": "/index.html" },
+    { "source": "/", "destination": "/heal.html" }
+  ]
+}

@@ -1,4 +1,4 @@
-import { setCurrentPortal, setCurrentPage, currentPortal, currentPage, OR_KEY } from './state.js';
+import { setCurrentPortal, setCurrentPage, currentPortal, currentPage } from './state.js';
 import { toast } from './utils.js';
 import { showLoginScreen, switchLoginTab, submitPharmaApp, sendPatientOtp, gotoApp } from './auth.js';
 import { buildAppShell, showPg, renderPharmaPages, renderPatientPages } from './app.js';

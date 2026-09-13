@@ -31,8 +31,8 @@ Opens at **http://localhost:3000**
 3. Open `.env` and set:
 
 ```env
-REACT_APP_OPENROUTER_API_KEY=sk-or-v1-your-key-here
-REACT_APP_OPENROUTER_MODEL=mistralai/mistral-7b-instruct
+OPENROUTER_API_KEY=your_key_here
+OPENROUTER_MODEL=meta-llama/llama-3.3-70b-instruct:free
 ```
 
 Or configure it live via the **Settings** page in the app (stored in localStorage).

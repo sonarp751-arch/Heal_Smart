@@ -1,4 +1,7 @@
-import { OR_KEY, currentPortal, chatHistory } from './state.js';
+import { currentPortal, chatHistory } from './state.js';
+import { requestAI } from './api-client.js';
+
+const fetch = requestAI;
 
 export const sysPromptPharma = { role: 'system', content: 'You are HealSmart, an expert pharmaceutical drug repurposing AI. Provide detailed, scientifically rigorous answers on drug mechanisms, repurposing candidates, AutoDock Vina interpretation, ADMET profiles, gene targets, clinical trial design, patent landscapes. Reference data sources (ChEMBL, DrugBank, OpenTargets, PubMed). State confidence levels. Format with clear structure using markdown-like headers and bullet points.' };
 export const sysPromptPatient = { role: 'system', content: 'You are HealSmart, a friendly medical AI assistant for patients and doctors in India. Explain medicines in simple language, provide generic alternative information, Jan Aushadhi store details, side effects, dosage information, and when to see a doctor. Always recommend consulting a qualified doctor before changing medication. Be empathetic, clear, and accurate.' };
@@ -15,7 +18,7 @@ export async function sendChat() {
   chatHistory.push({ role: 'user', content: q });
   const sysMsg = isPharma ? sysPromptPharma : sysPromptPatient;
   try {
-    const r = await fetch('https://openrouter.ai/api/v1/chat/completions', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + OR_KEY, 'HTTP-Referer': 'https://healsmart.ai', 'X-Title': 'HealSmart' }, body: JSON.stringify({ model: 'meta-llama/llama-3.3-70b-instruct', messages: [sysMsg, ...chatHistory.slice(-8)], max_tokens: 1200, temperature: 0.4 }) });
+    const r = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ model: 'meta-llama/llama-3.3-70b-instruct', messages: [sysMsg, ...chatHistory.slice(-8)], max_tokens: 1200, temperature: 0.4 }) });
     const d = await r.json(); const reply = d.choices?.[0]?.message?.content || 'Unable to get response. Please try again.';
     chatHistory.push({ role: 'assistant', content: reply });
     document.getElementById('typing').outerHTML = `<div class="msg-a">${reply.replace(/\\n\\n/g, '<br><br>').replace(/\\n/g, '<br>').replace(/\\*\\*(.*?)\\*\\*/g, '<strong>$1</strong>').replace(/\`([^\`]+)\`/g, '<code style="background:rgba(255,255,255,0.08);padding:0.1rem 0.35rem;border-radius:3px;font-family:var(--FC);font-size:0.82rem">$1</code>')}</div>`;
@@ -38,7 +41,7 @@ export async function sendChatWith(msgsId, inpId) {
   msgsDiv.innerHTML += `<div class="msg-a" id="typing2"><div class="ldots" style="padding:0.4rem"><div class="ldot"></div><div class="ldot"></div><div class="ldot"></div></div></div>`;
   msgsDiv.scrollTop = msgsDiv.scrollHeight;
   try {
-    const r = await fetch('https://openrouter.ai/api/v1/chat/completions', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + OR_KEY, 'HTTP-Referer': 'https://healsmart.ai', 'X-Title': 'HealSmart' }, body: JSON.stringify({ model: 'meta-llama/llama-3.3-70b-instruct', messages: [sysPromptPatient, ...chatHistory.slice(-6)], max_tokens: 900, temperature: 0.5 }) });
+    const r = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ model: 'meta-llama/llama-3.3-70b-instruct', messages: [sysPromptPatient, ...chatHistory.slice(-6)], max_tokens: 900, temperature: 0.5 }) });
     const d = await r.json(); const reply = d.choices?.[0]?.message?.content || 'Please try again.';
     chatHistory.push({ role: 'assistant', content: reply });
     document.getElementById('typing2').outerHTML = `<div class="msg-a">${reply.replace(/\\n\\n/g, '<br><br>').replace(/\\n/g, '<br>').replace(/\\*\\*(.*?)\\*\\*/g, '<strong style="color:var(--gold)">$1</strong>')}</div>`;

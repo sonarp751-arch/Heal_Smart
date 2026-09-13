@@ -1,4 +1,6 @@
-import { OR_KEY } from './state.js';
+import { requestAI } from './api-client.js';
+
+const fetch = requestAI;
 import { showPg } from './app.js';
 import { toast } from './utils.js';
 
@@ -32,7 +34,7 @@ export async function runRep() {
 "candidates":[{"drug":"...","new_indication":"...","confidence_pct":87,"evidence_level":"Phase III|Phase II|Phase I|Preclinical|In silico","mechanism":"...","gene_target":"...","binding_affinity_kcal":"-8.4","clinical_trial_id":"NCT...","market_size_usd_m":450,"key_papers":["Author et al. Journal Year DOI"]}],
 "admet_flags":["..."],"patent_status":"...","competitive_landscape":["Company — drug"]}`;
   try {
-    const r = await fetch('https://openrouter.ai/api/v1/chat/completions', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + OR_KEY, 'HTTP-Referer': 'https://healsmart.ai', 'X-Title': 'HealSmart' }, body: JSON.stringify({ model: 'meta-llama/llama-3.3-70b-instruct', messages: [{ role: 'system', content: sys }, { role: 'user', content: `Drug repurposing query: "${q}", mode: ${repMode}. Return 5 candidates with realistic clinical data, NCT IDs, DOI references.` }], max_tokens: 2000, temperature: 0.15 }) });
+    const r = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ model: 'meta-llama/llama-3.3-70b-instruct', messages: [{ role: 'system', content: sys }, { role: 'user', content: `Drug repurposing query: "${q}", mode: ${repMode}. Return 5 candidates with realistic clinical data, NCT IDs, DOI references.` }], max_tokens: 2000, temperature: 0.15 }) });
     const d = await r.json(); let t = d.choices?.[0]?.message?.content || ''; t = t.replace(/```json|```/g, '').trim(); renderRep(JSON.parse(t));
   } catch (e) { renderRep(getDemoRep(q)); }
 }

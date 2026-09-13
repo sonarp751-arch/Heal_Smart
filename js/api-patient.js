@@ -1,4 +1,6 @@
-import { OR_KEY } from './state.js';
+import { requestAI } from './api-client.js';
+
+const fetch = requestAI;
 import { toast } from './utils.js';
 
 export let patMode = 'medicine';
@@ -27,7 +29,7 @@ export async function runMed() {
   const sys = `Return ONLY valid JSON:
 {"name":"...","active_ingredients":"...","uses":["U1","U2"],"side_effects":["S1"],"contraindications":["C1"],"branded_price_inr":250,"jan_aushadhi_price_inr":35,"alternatives":[{"name":"...","price_inr":...}],"jan_aushadhi_stores":[{"name":"...","distance_km":2.5,"stock":"In Stock|Limited Stock|Out of Stock","phone":"...","area":"...","city":"..."}]}`;
   try {
-    const r = await fetch('https://openrouter.ai/api/v1/chat/completions', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + OR_KEY, 'HTTP-Referer': 'https://healsmart.ai', 'X-Title': 'HealSmart' }, body: JSON.stringify({ model: 'meta-llama/llama-3.3-70b-instruct', messages: [{ role: 'system', content: sys }, { role: 'user', content: `Medicine lookup for Indian patient: "${q}". Return realistic pricing in INR and nearest Jan Aushadhi stores in major Indian city.` }], max_tokens: 1500, temperature: 0.2 }) });
+    const r = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ model: 'meta-llama/llama-3.3-70b-instruct', messages: [{ role: 'system', content: sys }, { role: 'user', content: `Medicine lookup for Indian patient: "${q}". Return realistic pricing in INR and nearest Jan Aushadhi stores in major Indian city.` }], max_tokens: 1500, temperature: 0.2 }) });
     const d = await r.json(); let t = d.choices?.[0]?.message?.content || ''; t = t.replace(/```json|```/g, '').trim(); renderMed(JSON.parse(t));
   } catch (e) { renderMed(getDemoMed(q)); }
 }

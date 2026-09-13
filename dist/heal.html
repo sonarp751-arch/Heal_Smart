@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HealSmart — Drug Repurposing & Optimization AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500&display=swap"
+    rel="stylesheet">
+
+
+
+  <script type="module" crossorigin src="/assets/landing-cqx-DK5S.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="stylesheet" crossorigin href="/assets/landing-CPFj7pY1.css">
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════════════════════════════
+     LANDING PAGE
+══════════════════════════════════════════════════════ -->
+  <div id="landing">
+    <div class="land-bg"></div>
+    <div class="land-grid"></div>
+
+    <nav class="land-nav">
+      <div class="land-nav-inner">
+        <div class="brand" onclick="scrollTo(0,0)">
+          <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none">
+              <path d="M10 8h4v3h3v4h-3v3h-4v-3H7v-4h3V8z" fill="white" />
+              <circle cx="17" cy="7" r="2.5" fill="rgba(255,255,255,0.6)" />
+            </svg></div>
+          <div class="brand-name">Heal<span>Smart</span></div>
+        </div>
+        <div class="land-nav-links">
+          <a onclick="scrollTo(0,600)">Platform</a>
+          <a onclick="scrollTo(0,1100)">For Pharma</a>
+          <a onclick="scrollTo(0,1100)">For Patients</a>
+          <a onclick="scrollTo(0,1500)">Features</a>
+        </div>
+        <div class="land-nav-cta">
+          <button class="btn btn-ghost btn-sm" onclick="showLoginScreen()">Sign In</button>
+          <button class="btn btn-teal btn-sm" onclick="showLoginScreen()">Get Started →</button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="hero" style="position:relative;z-index:2">
+      <div class="hero-eyebrow">AI FOR PHARMACEUTICAL RESEARCH · REDUCING DRUG DISCOVERY TIMELINE</div>
+      <h1>Discover New Cures<br>from <span class="hl-teal">Existing Drugs.</span><br>Instantly.</h1>
+      <p class="hero-sub">HealSmart is the AI platform that identifies new therapeutic uses for approved drugs —
+        slashing the 12–15 year drug development timeline down to months. For pharma researchers and everyday
+        patients alike.</p>
+      <div class="hero-cta">
+        <button class="btn btn-teal btn-lg" onclick="showLoginScreen('pharma')">🔬 Pharma Research
+          Portal</button>
+        <button class="btn btn-outline-gold btn-lg" onclick="showLoginScreen('patient')">💊 Find Affordable
+          Medicines</button>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat">
+          <div class="hstat-num">4,200+</div>
+          <div class="hstat-label">Approved Drugs Indexed</div>
+        </div>
+        <div class="hstat">
+          <div class="hstat-num">847</div>
+          <div class="hstat-label">AI Repurposing Leads</div>
+        </div>
+        <div class="hstat">
+          <div class="hstat-num">8,800+</div>
+          <div class="hstat-label">Jan Aushadhi Stores</div>
+        </div>
+        <div class="hstat">
+          <div class="hstat-num">~90%</div>
+          <div class="hstat-label">Cost Reduction vs Branded</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="portal-section">
+      <div style="text-align:center;margin-bottom:2.5rem">
+        <div
+          style="font-family:var(--FC);font-size:0.68rem;color:var(--teal);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.65rem">
+          Two Portals. One Mission.</div>
+        <h2 style="font-family:var(--FD);font-size:2.4rem;font-weight:700;color:var(--text);font-style:italic">
+          Choose Your Access</h2>
+      </div>
+      <div class="portal-grid">
+        <div class="portal-card pc-pharma" onclick="showLoginScreen('pharma')">
+          <span class="pc-badge badge-teal">RESEARCH PORTAL</span>
+          <div class="pc-icon pc-icon-pharma">🔬</div>
+          <div class="pc-title teal">Pharmaceutical Companies</div>
+          <div class="pc-sub">AI-powered drug repurposing engine for research teams. Identify new therapeutic
+            indications, map gene-disease targets, run AI-simulated molecular docking, and access the latest
+            literature — all in one platform.</div>
+          <div class="pc-features">
+            <div class="pc-feat pc-feat-teal">Disease Target Identification Engine — add disease data, get
+              gene targets</div>
+            <div class="pc-feat pc-feat-teal">AI Molecular Docking (AutoDock Vina simulation) — binding
+              affinities</div>
+            <div class="pc-feat pc-feat-teal">Drug Repurposing AI — ranked candidates with clinical evidence
+            </div>
+            <div class="pc-feat pc-feat-teal">Literature Intelligence — PubMed + Sci-Hub auto-routing for
+              paywalled papers</div>
+            <div class="pc-feat pc-feat-teal">Pipeline Kanban — track candidates from AI hit to clinical
+              approval</div>
+            <div class="pc-feat pc-feat-teal">Gene-Disease Network Visualiser — OpenTargets + DisGeNET data
+            </div>
+          </div>
+          <div
+            style="display:flex;align-items:center;gap:0.5rem;font-size:0.78rem;color:var(--text-dim);margin-top:0.5rem">
+            <span
+              style="font-family:var(--FC);font-size:0.65rem;background:rgba(255,94,94,0.1);color:#ff7a7a;border:1px solid rgba(255,94,94,0.2);padding:0.15rem 0.45rem;border-radius:3px">🔒
+              REQUIRES VERIFICATION</span>
+            <span>Employee ID + Company Email</span>
+          </div>
+          <button class="btn btn-teal" style="margin-top:1.25rem;width:100%">Access Research Portal →</button>
+        </div>
+        <div class="portal-card pc-user" onclick="showLoginScreen('patient')">
+          <span class="pc-badge badge-gold">PATIENT PORTAL</span>
+          <div class="pc-icon pc-icon-user">💊</div>
+          <div class="pc-title gold">Patients & Doctors</div>
+          <div class="pc-sub">Search medicines, diseases, or symptoms. Get AI-powered drug information,
+            compare branded vs generic prices, and find the nearest Pradhan Mantri Jan Aushadhi Kendra with
+            real-time stock data.</div>
+          <div class="pc-features">
+            <div class="pc-feat pc-feat-gold">Search by medicine name, disease, or symptoms</div>
+            <div class="pc-feat pc-feat-gold">Compare branded vs generic — save up to 90% with Jan Aushadhi
+            </div>
+            <div class="pc-feat pc-feat-gold">Nearest Jan Aushadhi stores with live stock verification</div>
+            <div class="pc-feat pc-feat-gold">AI-powered medicine information and side effect checker</div>
+            <div class="pc-feat pc-feat-gold">Doctor-friendly drug interaction checker</div>
+            <div class="pc-feat pc-feat-gold">Prescription upload for alternative suggestions</div>
+          </div>
+          <div style="font-size:0.78rem;color:var(--text-dim);margin-top:0.5rem">
+            <span
+              style="font-family:var(--FC);font-size:0.65rem;background:var(--teal-bg);color:var(--teal);border:1px solid var(--teal-border);padding:0.15rem 0.45rem;border-radius:3px">✓
+              SIMPLE SIGN-UP</span>
+            <span style="margin-left:0.5rem">Mobile OTP or Email only</span>
+          </div>
+          <button class="btn btn-gold" style="margin-top:1.25rem;width:100%">Find Medicines Near Me →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="features-strip">
+      <div style="text-align:center;margin-bottom:2rem">
+        <h2 style="font-family:var(--FD);font-size:1.8rem;font-weight:700;color:var(--text);font-style:italic">
+          Platform Capabilities</h2>
+      </div>
+      <div class="fs-grid">
+        <div class="fs-item">
+          <div class="fs-icon">🧬</div>
+          <div class="fs-title">Disease Target ID</div>
+          <div class="fs-desc">Upload disease data, literature, or OMIM IDs — AI identifies druggable gene
+            targets</div>
+        </div>
+        <div class="fs-item">
+          <div class="fs-icon">⚗️</div>
+          <div class="fs-title">AI Docking (Vina)</div>
+          <div class="fs-desc">SMILES + PDB → binding affinity, pose, interaction map in seconds</div>
+        </div>
+        <div class="fs-item">
+          <div class="fs-icon">📊</div>
+          <div class="fs-title">Repurposing Rank</div>
+          <div class="fs-desc">Confidence-ranked candidates from ChEMBL, DrugBank, OpenTargets</div>
+        </div>
+        <div class="fs-item">
+          <div class="fs-icon">📚</div>
+          <div class="fs-title">Sci-Hub Access</div>
+          <div class="fs-desc">Paywalled papers auto-routed. Never lose access to critical research</div>
+        </div>
+        <div class="fs-item">
+          <div class="fs-icon">🏪</div>
+          <div class="fs-title">Jan Aushadhi Finder</div>
+          <div class="fs-desc">8,800+ PMJAK stores with real-time stock and pricing data</div>
+        </div>
+        <div class="fs-item">
+          <div class="fs-icon">🤖</div>
+          <div class="fs-title">Research Copilot</div>
+          <div class="fs-desc">Natural language Q&A on mechanisms, ADMET, trials, patents</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="land-footer">
+      © 2025 HealSmart · AI for Pharmaceutical Research · Data: DrugBank · ChEMBL · OpenTargets · DisGeNET · PMJAY
+      · PubMed<br>
+      <span style="color:rgba(255,255,255,0.15)">For research and informational purposes. Not a substitute for
+        clinical judgment.</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+     LOGIN SCREEN
+══════════════════════════════════════════════════════ -->
+  <div id="login-screen" class="hidden"
+    style="min-height:100vh;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:2rem;position:relative">
+    <div
+      style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(0,212,170,0.05) 0%,transparent 70%)">
+    </div>
+    <div class="login-box" style="position:relative;z-index:2">
+      <div class="login-brand" style="margin-bottom:1.5rem">
+        <div style="display:flex;align-items:center;justify-content:center;gap:9px;margin-bottom:0.5rem">
+          <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none">
+              <path d="M10 8h4v3h3v4h-3v3h-4v-3H7v-4h3V8z" fill="white" />
+              <circle cx="17" cy="7" r="2.5" fill="rgba(255,255,255,0.6)" />
+            </svg></div>
+          <div class="brand-name">Heal<span>Smart</span></div>
+        </div>
+        <div
+          style="font-family:var(--FC);font-size:0.65rem;color:var(--text-faint);text-align:center;letter-spacing:0.08em">
+          AI FOR PHARMACEUTICAL RESEARCH</div>
+      </div>
+
+      <div class="login-tabs">
+        <button class="ltab pharma active" id="ltab-pharma" onclick="switchLoginTab('pharma')">🔬 Pharma /
+          Research</button>
+        <button class="ltab patient" id="ltab-patient" onclick="switchLoginTab('patient')">💊 Patient /
+          Doctor</button>
+      </div>
+
+      <!-- PHARMA LOGIN -->
+      <div id="lform-pharma">
+        <div class="login-portal-badge lpb-pharma">🔬 <strong>Pharmaceutical Research Portal</strong> —
+          Restricted Access</div>
+        <div class="login-note">Requires verification of <strong>professional affiliation</strong>. Submit your
+          company email, employee ID, and a brief purpose statement. Access granted within 24 hours after
+          review.</div>
+        <div id="pharma-login-step1">
+          <div class="fg"><label>Company / Institution</label><input type="text" id="ph-company"
+              placeholder="e.g. Sun Pharma Ltd., CSIR-CDRI, IIT Delhi"></div>
+          <div class="fg"><label>Official Company Email</label><input type="email" id="ph-email"
+              placeholder="you@company.com"></div>
+          <div class="fg"><label>Employee ID / Staff Number</label><input type="text" id="ph-empid"
+              placeholder="e.g. EMP-2024-00847 — Required for verification"></div>
+          <div class="frow">
+            <div class="fg"><label>Your Role</label>
+              <select id="ph-role">
+                <option>Research Scientist</option>
+                <option>Principal Investigator</option>
+                <option>R&D Director</option>
+                <option>Computational Chemist</option>
+                <option>Medicinal Chemist</option>
+                <option>Regulatory Affairs</option>
+                <option>CTO/CSO</option>
+              </select>
+            </div>
+            <div class="fg"><label>Org Type</label>
+              <select id="ph-org">
+                <option>Pharmaceutical Co.</option>
+                <option>Biotech Startup</option>
+                <option>Academic Research</option>
+                <option>CRO</option>
+                <option>Government Research</option>
+                <option>Hospital Research</option>
+              </select>
+            </div>
+          </div>
+          <div class="fg"><label>Research Purpose</label><textarea id="ph-purpose"
+              placeholder="Briefly describe your drug repurposing research goals and how HealSmart will support your work…"></textarea>
+          </div>
+          <div
+            style="border:2px dashed var(--border);border-radius:var(--r8);padding:1rem;text-align:center;cursor:pointer;margin-bottom:0.9rem;transition:all 0.2s"
+            onclick="toast('Upload your institutional ID or company letter (PDF/JPG)')"
+            onmouseover="this.style.borderColor='var(--teal)'" onmouseout="this.style.borderColor='var(--border)'">
+            <div style="font-size:1.2rem;margin-bottom:3px">📄</div>
+            <div style="font-size:0.76rem;color:var(--text-dim)">Upload Employee ID / Institutional Proof
+              <span style="font-family:var(--FC);color:var(--text-faint)">(PDF/JPG)</span>
+            </div>
+          </div>
+          <button class="btn btn-teal" style="width:100%;padding:0.8rem;font-size:0.92rem"
+            onclick="submitPharmaApp()">Submit Application for Verification</button>
+          <div
+            style="text-align:center;margin-top:0.75rem;font-family:var(--FC);font-size:0.62rem;color:var(--text-faint)">
+            Already have access? <span style="color:var(--teal);cursor:pointer" onclick="gotoApp('pharma')">Sign in with
+              email + OTP →</span></div>
+        </div>
+      </div>
+
+      <!-- PATIENT LOGIN -->
+      <div id="lform-patient" class="hidden">
+        <div class="login-portal-badge lpb-patient">💊 <strong>Patient / Doctor Portal</strong> — Free Access
+        </div>
+        <div id="patient-step1">
+          <div class="fg"><label>Mobile Number or Email</label><input type="text" id="pt-contact"
+              placeholder="+91 98765 43210 or email@example.com"></div>
+          <div class="fg"><label>Your Name</label><input type="text" id="pt-name" placeholder="Full name">
+          </div>
+          <div class="fg"><label>Are you a</label>
+            <select id="pt-role">
+              <option>Patient</option>
+              <option>Doctor / Physician</option>
+              <option>Pharmacist</option>
+              <option>Caregiver</option>
+              <option>Healthcare Student</option>
+            </select>
+          </div>
+          <button class="btn btn-gold" style="width:100%;padding:0.8rem;font-size:0.92rem"
+            onclick="sendPatientOtp()">Send OTP →</button>
+          <div style="text-align:center;margin-top:0.75rem;font-size:0.78rem;color:var(--text-dim)">No
+            password needed. OTP-only sign-in.</div>
+        </div>
+        <div id="patient-step2" class="hidden">
+          <div style="text-align:center;margin-bottom:1.25rem">
+            <div style="font-size:1.5rem;margin-bottom:0.4rem">📱</div>
+            <div style="font-size:0.88rem;color:var(--text)">OTP sent to <strong id="pt-dest"></strong>
+            </div>
+            <div style="font-size:0.78rem;color:var(--text-dim);margin-top:3px">Enter the 6-digit code below
+            </div>
+          </div>
+          <div class="otp-row fg"><input placeholder="6-digit OTP" id="otp-inp" maxlength="6"></div>
+          <button class="btn btn-gold" style="width:100%;padding:0.8rem" onclick="gotoApp('patient')">Verify &
+            Enter →</button>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:1rem;cursor:pointer;font-size:0.78rem;color:var(--text-dim)"
+        onclick="document.getElementById('landing').classList.remove('hidden');document.getElementById('login-screen').classList.add('hidden')">
+        ← Back to home</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+     APP SHELL
+══════════════════════════════════════════════════════ -->
+  <div id="app-shell" class="hidden">
+
+    <nav class="app-nav">
+      <div class="brand" onclick="void(0)" style="cursor:default">
+        <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none">
+            <path d="M10 8h4v3h3v4h-3v3h-4v-3H7v-4h3V8z" fill="white" />
+            <circle cx="17" cy="7" r="2.5" fill="rgba(255,255,255,0.55)" />
+          </svg></div>
+        <div class="brand-name" style="font-size:1.1rem">Heal<span>Smart</span></div>
+      </div>
+      <div class="app-nav-divider"></div>
+      <div class="app-nav-links" id="app-nav-links"></div>
+      <div class="app-nav-right">
+        <span class="portal-indicator" id="portal-indicator"></span>
+        <div class="user-chip">
+          <div class="user-av" id="user-av">?</div>
+          <span id="user-name-chip">User</span>
+        </div>
+      </div>
+    </nav>
+
+    <div style="display:flex;padding-top:60px;min-height:100vh">
+      <div class="sidebar" id="sidebar"></div>
+      <div class="main" id="main-content"></div>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+
+</body>
+</html>
