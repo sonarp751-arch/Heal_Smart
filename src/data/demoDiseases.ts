@@ -1,0 +1,73 @@
+import { DiseaseEntity } from '../types';
+import { createProvenance } from '../services/apiProvenance';
+
+export const DEMO_DISEASES: DiseaseEntity[] = [
+  {
+    id: 'EFO_0000384',
+    name: 'Glioblastoma Multiforme (GBM)',
+    ontology: 'EFO (Experimental Factor Ontology)',
+    synonyms: ['Glioblastoma', 'Grade IV Astrocytoma', 'GBM'],
+    description: 'Highly aggressive primary malignant brain tumor characterized by rapid cellular proliferation, intense angiogenesis, diffuse brain parenchymal infiltration, and profound resistance to conventional temozolomide chemotherapy.',
+    therapeuticArea: 'Neuro-Oncology',
+    associatedGenesCount: 384,
+    knownTargetsCount: 42,
+    clinicalTrialsCount: 1240,
+    approvedDrugsCount: 4,
+    provenance: createProvenance('Open Targets Platform / EFO', 'EFO_0000384', {
+      sourceUrl: 'https://platform.opentargets.org/disease/EFO_0000384',
+      isDemo: true,
+      isExperimental: true,
+    }),
+  },
+  {
+    id: 'MONDO_0004975',
+    name: "Alzheimer's Disease (AD)",
+    ontology: 'MONDO (Mondo Disease Ontology)',
+    synonyms: ["Alzheimer Disease", "Dementia of the Alzheimer's type"],
+    description: 'Progressive neurodegenerative disorder characterized by extracellular amyloid-beta plaque deposition, intracellular hyperphosphorylated tau neurofibrillary tangles, and profound synaptic and neuronal loss.',
+    therapeuticArea: 'Neurodegenerative Disorders',
+    associatedGenesCount: 512,
+    knownTargetsCount: 68,
+    clinicalTrialsCount: 2890,
+    approvedDrugsCount: 7,
+    provenance: createProvenance('Open Targets Platform / MONDO', 'MONDO_0004975', {
+      sourceUrl: 'https://platform.opentargets.org/disease/MONDO_0004975',
+      isDemo: true,
+      isExperimental: true,
+    }),
+  },
+  {
+    id: 'EFO_0000768',
+    name: 'Idiopathic Pulmonary Fibrosis (IPF)',
+    ontology: 'EFO',
+    synonyms: ['Cryptogenic Fibrosing Alveolitis', 'IPF'],
+    description: 'Chronic, progressive, fibrosing interstitial lung disease of unknown etiology, characterized by abnormal extracellular matrix deposition, alveolar epithelial injury, and fibroblast-to-myofibroblast transition.',
+    therapeuticArea: 'Pulmonology / Fibrotic Diseases',
+    associatedGenesCount: 219,
+    knownTargetsCount: 28,
+    clinicalTrialsCount: 430,
+    approvedDrugsCount: 2,
+    provenance: createProvenance('Open Targets Platform / EFO', 'EFO_0000768', {
+      sourceUrl: 'https://platform.opentargets.org/disease/EFO_0000768',
+      isDemo: true,
+      isExperimental: true,
+    }),
+  },
+  {
+    id: 'EFO_0002618',
+    name: 'Pancreatic Ductal Adenocarcinoma (PDAC)',
+    ontology: 'EFO',
+    synonyms: ['Pancreatic Adenocarcinoma', 'Pancreatic Cancer', 'PDAC'],
+    description: 'Lethal gastrointestinal malignancy characterized by a dense desmoplastic stroma, KRAS mutations in >90% of cases, immunosuppressive microenvironment, and severe hypovascularity.',
+    therapeuticArea: 'Gastrointestinal Oncology',
+    associatedGenesCount: 420,
+    knownTargetsCount: 35,
+    clinicalTrialsCount: 1120,
+    approvedDrugsCount: 5,
+    provenance: createProvenance('Open Targets Platform / EFO', 'EFO_0002618', {
+      sourceUrl: 'https://platform.opentargets.org/disease/EFO_0002618',
+      isDemo: true,
+      isExperimental: true,
+    }),
+  },
+];

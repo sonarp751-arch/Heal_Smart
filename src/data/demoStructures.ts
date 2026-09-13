@@ -1,0 +1,172 @@
+import { BindingPocket, ProteinStructureEntity } from '../types';
+import { createProvenance } from '../services/apiProvenance';
+
+export const DEMO_STRUCTURES: Record<string, ProteinStructureEntity> = {
+  EGFR: {
+    pdbId: '1M17',
+    uniprotId: 'P00533',
+    geneSymbol: 'EGFR',
+    title: 'Crystal Structure of the EGFR Kinase Domain in Complex with Erlotinib (OSI-774)',
+    experimentalMethod: 'X-ray Diffraction',
+    resolution: '2.60 Å',
+    chains: ['A'],
+    boundLigands: [
+      {
+        id: 'AQ4',
+        name: 'Erlotinib (N-(3-ethynylphenyl)-6,7-bis(2-methoxyethoxy)quinazolin-4-amine)',
+        chemblId: 'CHEMBL482',
+        formula: 'C22H23N3O4',
+      },
+    ],
+    isAlphaFold: false,
+    provenance: createProvenance('RCSB PDB', '1M17', {
+      sourceUrl: 'https://www.rcsb.org/structure/1M17',
+      isExperimental: true,
+      isDemo: true,
+    }),
+  },
+  PARP1: {
+    pdbId: '4I25',
+    uniprotId: 'P09874',
+    geneSymbol: 'PARP1',
+    title: 'Crystal Structure of PARP1 Catalytic Domain in Complex with Olaparib (AZD2281)',
+    experimentalMethod: 'X-ray Diffraction',
+    resolution: '1.95 Å',
+    chains: ['A', 'B'],
+    boundLigands: [
+      {
+        id: 'AZD',
+        name: 'Olaparib',
+        chemblId: 'CHEMBL513488',
+        formula: 'C24H23FN4O3',
+      },
+    ],
+    isAlphaFold: false,
+    provenance: createProvenance('RCSB PDB', '4I25', {
+      sourceUrl: 'https://www.rcsb.org/structure/4I25',
+      isExperimental: true,
+      isDemo: true,
+    }),
+  },
+  CDK4: {
+    pdbId: '2E4F',
+    uniprotId: 'P11802',
+    geneSymbol: 'CDK4',
+    title: 'Crystal structure of human CDK4 in complex with Cyclin D1 and selective ATP inhibitor',
+    experimentalMethod: 'X-ray Diffraction',
+    resolution: '2.30 Å',
+    chains: ['A'],
+    boundLigands: [
+      {
+        id: '502',
+        name: 'ATP-competitive inhibitor',
+        chemblId: 'CHEMBL189963',
+        formula: 'C19H20N6O',
+      },
+    ],
+    isAlphaFold: false,
+    provenance: createProvenance('RCSB PDB', '2E4F', {
+      sourceUrl: 'https://www.rcsb.org/structure/2E4F',
+      isExperimental: true,
+      isDemo: true,
+    }),
+  },
+  HDAC1: {
+    pdbId: '4BKX',
+    uniprotId: 'Q13547',
+    geneSymbol: 'HDAC1',
+    title: 'Crystal structure of HDAC1 in complex with macrocyclic peptide and catalytic Zinc',
+    experimentalMethod: 'X-ray Diffraction',
+    resolution: '2.10 Å',
+    chains: ['A'],
+    boundLigands: [
+      {
+        id: 'ZN',
+        name: 'Zinc Ion',
+        formula: 'Zn2+',
+      },
+    ],
+    isAlphaFold: false,
+    provenance: createProvenance('RCSB PDB', '4BKX', {
+      sourceUrl: 'https://www.rcsb.org/structure/4BKX',
+      isExperimental: true,
+      isDemo: true,
+    }),
+  },
+};
+
+export const DEMO_POCKETS: Record<string, BindingPocket[]> = {
+  EGFR: [
+    {
+      pocketId: 'PKT_EGFR_ATP_01',
+      proteinPdbId: '1M17',
+      pocketName: 'Orthosteric ATP-Binding Cleft (Hinge Region)',
+      isExperimental: true,
+      volumeA3: 1120,
+      druggabilityScore: 0.94,
+      centerCoords: { x: 28.45, y: 34.12, z: 12.88 },
+      boxDimensions: { sizeX: 22.0, sizeY: 22.0, sizeZ: 22.0 },
+      keyResidues: ['Leu718', 'Val726', 'Ala743', 'Lys745', 'Met793', 'Cys797', 'Leu844', 'Thr854'],
+      knownLigandInPocket: 'Erlotinib (AQ4)',
+      surfacePolarity: 'Amphiphilic',
+    },
+    {
+      pocketId: 'PKT_EGFR_ALLO_02',
+      proteinPdbId: '1M17',
+      pocketName: 'Allosteric Pocket IV (Adjacent to C-helix)',
+      isExperimental: false,
+      predictionMethod: 'DoGSiteScorer / fpocket v4.1',
+      volumeA3: 680,
+      druggabilityScore: 0.72,
+      centerCoords: { x: 38.10, y: 26.50, z: 18.20 },
+      boxDimensions: { sizeX: 18.0, sizeY: 18.0, sizeZ: 18.0 },
+      keyResidues: ['Lys745', 'Glu762', 'Met766', 'Leu777', 'Phe856'],
+      surfacePolarity: 'Hydrophobic',
+    },
+  ],
+  PARP1: [
+    {
+      pocketId: 'PKT_PARP1_CAT_01',
+      proteinPdbId: '4I25',
+      pocketName: 'Catalytic NAD+ Binding Pocket (Nicotinamide Sub-pocket)',
+      isExperimental: true,
+      volumeA3: 980,
+      druggabilityScore: 0.96,
+      centerCoords: { x: 14.22, y: -8.45, z: 24.60 },
+      boxDimensions: { sizeX: 20.0, sizeY: 20.0, sizeZ: 20.0 },
+      keyResidues: ['His862', 'Gly863', 'Ser904', 'Tyr896', 'Tyr907', 'Glu988'],
+      knownLigandInPocket: 'Olaparib (AZD)',
+      surfacePolarity: 'Polar',
+    },
+  ],
+  CDK4: [
+    {
+      pocketId: 'PKT_CDK4_ATP_01',
+      proteinPdbId: '2E4F',
+      pocketName: 'Kinase ATP Binding Cleft (Gatekeeper Phe93)',
+      isExperimental: true,
+      volumeA3: 890,
+      druggabilityScore: 0.91,
+      centerCoords: { x: 4.80, y: 16.30, z: -11.40 },
+      boxDimensions: { sizeX: 20.0, sizeY: 20.0, sizeZ: 20.0 },
+      keyResidues: ['Ile12', 'Val20', 'Ala33', 'Lys35', 'Glu144', 'Phe93', 'His95', 'Asp158'],
+      knownLigandInPocket: 'Selective Inhibitor 502',
+      surfacePolarity: 'Amphiphilic',
+    },
+  ],
+  HDAC1: [
+    {
+      pocketId: 'PKT_HDAC1_CAT_01',
+      proteinPdbId: '4BKX',
+      pocketName: 'Zinc-Coordination Catalytic Tunnel & Outer Rim',
+      isExperimental: true,
+      volumeA3: 850,
+      druggabilityScore: 0.89,
+      centerCoords: { x: 18.90, y: 42.10, z: 6.70 },
+      boxDimensions: { sizeX: 20.0, sizeY: 20.0, sizeZ: 20.0 },
+      keyResidues: ['His140', 'His141', 'Asp176', 'His178', 'Asp264', 'Tyr303'],
+      knownLigandInPocket: 'Catalytic Zn2+ Ion',
+      surfacePolarity: 'Charged',
+    },
+  ],
+};

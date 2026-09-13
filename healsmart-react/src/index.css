@@ -1,0 +1,348 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── CSS Variables (mirror the original HTML exactly) ── */
+:root {
+  --teal:       #0f6e56;
+  --teal-light: #1D9E75;
+  --teal-bg:    #E1F5EE;
+  --teal-mid:   #5DCAA5;
+  --navy:       #042C53;
+  --navy-mid:   #185FA5;
+  --navy-light: #E6F1FB;
+  --amber:      #BA7517;
+  --amber-light:#FAEEDA;
+  --red:        #A32D2D;
+  --red-light:  #FCEBEB;
+  --gray-dark:  #2C2C2A;
+  --gray:       #5F5E5A;
+  --gray-light: #F1EFE8;
+  --white:      #ffffff;
+  --surface:    #f8faf9;
+  --border:     rgba(15,110,86,0.12);
+  --font-head:  'Cormorant Garamond', serif;
+  --font-body:  'Jost', sans-serif;
+  --font-sub:   'Libre Baskerville', serif;
+  --font-mono:  'DM Mono', monospace;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--surface); }
+::-webkit-scrollbar-thumb { background: var(--teal-mid); border-radius: 3px; }
+
+/* ── Typography helpers ── */
+.font-head { font-family: var(--font-head); }
+.font-body { font-family: var(--font-body); }
+.font-sub  { font-family: var(--font-sub); }
+.font-mono { font-family: var(--font-mono); }
+
+/* ── Animations ── */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes bounce3 {
+  0%, 60%, 100% { transform: translateY(0); }
+  30%           { transform: translateY(-8px); }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes spinDot {
+  to { transform: rotate(360deg); }
+}
+
+.animate-float  { animation: float 3s ease-in-out infinite; }
+.animate-float2 { animation: float 3s ease-in-out 1s infinite; }
+.animate-float3 { animation: float 3s ease-in-out 0.5s infinite; }
+.animate-fadeInUp { animation: fadeInUp 0.35s ease both; }
+.animate-slideUp { animation: slideUp 0.3s ease; }
+
+/* Loading dots */
+.dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--teal-mid);
+  animation: bounce3 1.2s infinite;
+}
+.dot:nth-child(2) { animation-delay: 0.2s; }
+.dot:nth-child(3) { animation-delay: 0.4s; }
+
+/* ── Shared form inputs ── */
+.hs-input {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  outline: none;
+  background: var(--surface);
+  transition: border-color 0.2s, background 0.2s;
+  color: var(--gray-dark);
+}
+.hs-input:focus {
+  border-color: var(--teal-mid);
+  background: white;
+}
+
+/* ── Shared button classes ── */
+.hs-btn {
+  padding: 0.5rem 1.4rem;
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  letter-spacing: 0.05em;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.hs-btn-solid   { background: var(--teal);  color: white; }
+.hs-btn-solid:hover  { background: var(--teal-light); }
+.hs-btn-navy    { background: var(--navy);  color: white; }
+.hs-btn-navy:hover   { background: var(--navy-mid); }
+.hs-btn-outline {
+  background: transparent;
+  border: 1.5px solid var(--teal);
+  color: var(--teal);
+}
+.hs-btn-outline:hover { background: var(--teal-bg); }
+.hs-btn-lg { padding: 0.75rem 2rem;  font-size: 1rem;   border-radius: 10px; }
+.hs-btn-xl { padding: 1rem 2.5rem;   font-size: 1.05rem; border-radius: 12px; }
+
+/* ── Tags / Chips ── */
+.tag {
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+  font-family: var(--font-body);
+}
+.tag:hover { transform: translateY(-1px); }
+.tag-med { background: var(--navy-light); color: var(--navy-mid); border-color: rgba(24,95,165,0.2); }
+.tag-dis { background: var(--teal-bg);    color: var(--teal);     border-color: rgba(15,110,86,0.2); }
+.tag-sym { background: var(--amber-light);color: var(--amber);    border-color: rgba(186,117,23,0.2); }
+
+/* ── Section layout ── */
+.hs-section { padding: 80px 2rem; }
+.hs-container { max-width: 1200px; margin: 0 auto; }
+.hs-section-head { text-align: center; margin-bottom: 3rem; }
+.hs-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 300;
+  color: var(--teal);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+.hs-h2 {
+  font-family: var(--font-head);
+  font-size: 2.8rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.01em;
+  font-style: italic;
+  line-height: 1.1;
+}
+.hs-lead {
+  font-size: 1rem;
+  color: var(--gray);
+  max-width: 580px;
+  margin: 0 auto;
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+/* ── Card ── */
+.hs-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.75rem;
+  border: 1px solid var(--border);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.hs-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(15,110,86,0.1);
+}
+
+/* ── Result card ── */
+.result-card {
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  margin-bottom: 1rem;
+  animation: fadeInUp 0.3s ease;
+}
+
+/* ── Pipeline phase badges ── */
+.phase-badge {
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  white-space: nowrap;
+}
+.phase-1   { background: var(--navy-light);   color: var(--navy-mid); }
+.phase-2   { background: var(--amber-light);  color: var(--amber); }
+.phase-3   { background: var(--teal-bg);      color: var(--teal); }
+.phase-app { background: #EAF3DE; color: #3B6D11; }
+
+/* ── Confidence bar ── */
+.conf-bar-track {
+  height: 5px;
+  background: var(--border);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.conf-bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--teal), var(--teal-light));
+  transition: width 0.8s cubic-bezier(.4,0,.2,1);
+}
+
+/* ── Toast ── */
+.hs-toast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--teal);
+  color: white;
+  padding: 0.75rem 1.25rem;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  z-index: 300;
+  animation: slideUp 0.3s ease;
+  box-shadow: 0 8px 24px rgba(15,110,86,0.25);
+  font-family: var(--font-body);
+}
+
+/* ── Modal ── */
+.hs-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(4,44,83,0.5);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  backdrop-filter: blur(4px);
+}
+.hs-modal {
+  background: white;
+  border-radius: 20px;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 480px;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* ── Disclaimer ── */
+.hs-disclaimer {
+  background: rgba(15,110,86,0.06);
+  border: 1px solid rgba(15,110,86,0.15);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  font-size: 0.82rem;
+  color: var(--gray);
+  line-height: 1.7;
+  font-family: var(--font-body);
+}
+
+/* ── Upload area ── */
+.upload-zone {
+  border: 2px dashed var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+.upload-zone:hover {
+  border-color: var(--teal-mid);
+  background: var(--teal-bg);
+}
+
+/* ── Auth toggle ── */
+.auth-toggle {
+  display: flex;
+  gap: 0.5rem;
+  background: var(--surface);
+  border-radius: 10px;
+  padding: 0.35rem;
+  margin-bottom: 1.5rem;
+}
+.auth-toggle button {
+  flex: 1;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: none;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: transparent;
+  color: var(--gray);
+  font-weight: 500;
+}
+.auth-toggle button.active {
+  background: white;
+  color: var(--teal);
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+/* ── App tabs ── */
+.app-tab {
+  flex: 1;
+  text-align: center;
+  padding: 0.6rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--gray);
+  border: none;
+  background: transparent;
+  font-family: var(--font-body);
+  letter-spacing: 0.04em;
+  font-weight: 400;
+}
+.app-tab.active {
+  background: white;
+  color: var(--teal);
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .hs-h2 { font-size: 2rem; }
+  .hide-mobile { display: none !important; }
+}
+@media (max-width: 600px) {
+  .hs-section { padding: 60px 1.25rem; }
+}
